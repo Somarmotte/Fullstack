@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hearthstone Fan Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<header>
+    <nav class="horizontal-list">
+        <ul class="nav-bar">
+            <li><a href="PageAcceuil.html">Accueil</a></li>
+            <li><a href="Cartes.html">Cartes</a></li>
+            <li><a href="Decks.html">Decks</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
 
+    <section id="recherche">
+        <form id="searchForm">
+            <select id="recherche-valeur">
+                <option value="">Sélectionner une classe</option>
+                <option value="DeathKnight">Death Knight</option>
+                <option value="DemonHunter">Demon Hunter</option>
+                <option value="Druid">Druid</option>
+                <option value="Hunter">Hunter</option>
+                <option value="Mage">Mage</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Priest">Priest</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Shaman">Shaman</option>
+                <option value="Warrior">Warrior</option>
+                <option value="Warlock">Warlock</option>
+            </select>
+            <button type="button" onclick="redirectToPage()">OK</button>
+        </form>
+    </section>
+
+
+</main>
+
+<footer>
+</footer>
+
+<script>
+    function redirectToPage() {
+        var selectElement = document.getElementById("recherche-valeur");
+        var selectedValue = selectElement.value;
+            if (selectedValue !== "") {
+                window.location.href = selectedValue + ".html";
+            }
+
+    }
+</script>
 </body>
 </html>
