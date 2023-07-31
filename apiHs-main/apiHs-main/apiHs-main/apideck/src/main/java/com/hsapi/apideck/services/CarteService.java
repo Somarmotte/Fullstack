@@ -16,11 +16,13 @@ import com.hsapi.apideck.client.*;
 @Service
 public class CarteService {
     public static HsApiClient ApiClient;
+    private static CarteRepository repository;
 
     CarteService(HsApiClient client) {
-        this.ApiClient = client;
-    }
 
+        this.ApiClient = client;
+        this.repository = repository;
+    }
 
     public void triCard(ArrayList<Carte> listAllCard) throws IOException, InterruptedException {
 
@@ -54,9 +56,16 @@ public class CarteService {
         return ApiClient.getCardForClass(klass);
     }
 
+    public ArrayList fetchCardForClassFromRepo(String klass) throws IOException, InterruptedException {
+        ArrayList CardByClassAndNeutral = new ArrayList<>();
+        CardByClassAndNeutral.addAll(CarteController.carteRepository.findAllByPlayerClass(klass));
+        CardByClassAndNeutral.addAll(CarteController.carteRepository.findAllByPlayerClass("Neutral"));
+
+        return CardByClassAndNeutral;
+    }
+    }
 
 
-}
 
 
 

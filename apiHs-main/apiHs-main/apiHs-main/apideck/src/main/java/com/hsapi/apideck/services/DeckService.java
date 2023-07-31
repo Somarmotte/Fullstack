@@ -1,9 +1,7 @@
 package com.hsapi.apideck.services;
 import com.hsapi.apideck.controller.CarteController;
 import com.hsapi.apideck.exception.CarteNotFoundException;
-import com.hsapi.apideck.exception.DeckFullException;
 import com.hsapi.apideck.exception.DeckNotFoundException;
-import com.hsapi.apideck.exception.TooManySameCardException;
 import com.hsapi.apideck.model.Carte;
 import com.hsapi.apideck.model.Deck;
 import com.hsapi.apideck.controller.DeckController;
@@ -34,21 +32,7 @@ public class DeckService {
         Carte carte = carteRepository.findById(idCarte)
                 .orElseThrow(() -> new CarteNotFoundException(idCarte));
          if (deck.getLikedCarte().size() >= 30){
-             throw new DeckFullException(idDeck);
-         }
-
-         long countWithoutLegendary = deck.getLikedCarte().stream()
-                 .filter(item -> item.getIdCarte() == carte.getIdCarte())
-                 .count();
-
-
-         if (countWithoutLegendary >= 2){
-            throw  new TooManySameCardException(idDeck);
-         }
-
-         if (carte.getRarity() == "Legendary" && carte.getIdCarte().describeConstable().isPresent())
-         {
-             throw  new TooManySameCardException(idDeck);
+             throw new Error("Deck complet");
          }
 
          if (deck.getPlayerClass().equals(carte.getPlayerClass()) ||
@@ -58,7 +42,7 @@ public class DeckService {
              carteRepository.save(carte);
          }
          else {
-             throw new CarteNotFoundException(idCarte);
+             throw new CarteNotFoundException(1);
          }
 
         return deck;
@@ -79,10 +63,11 @@ public class DeckService {
 
     public int checkNbrCardInDeck(Integer idDeck){
 
+        //recuperer un deck depuis la db
         Deck deck = deckRepository.findById(idDeck)
                 .orElseThrow(() -> new DeckNotFoundException(idDeck));
 
-        return deck.getLikedCarte().size();
+        return deck.getLikedCarte().size();//renvoyer la taille de la liste de carte du deck;
     }
 
 
