@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Test bouton appel fonction</title>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="UTF-8">
     <title>Hearthstone Fan Page</title>
     <link rel="stylesheet" href="styles.css">
@@ -9,12 +16,21 @@
 <header>
     <nav class="horizontal-list">
         <ul class="nav-bar">
-            <li><a href="PageAcceuil.html">Accueil</a></li>
+            <li><a href="PageAccueil.html">Accueil</a></li>
             <li><a href="Cartes.html">Cartes</a></li>
             <li><a href="Decks.html">Decks</a></li>
         </ul>
     </nav>
 </header>
+<button onclick="callController()">Afficher les cartes Priest</button>
+
+<table id="dataDisplay">
+    <thead>
+    <tr>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
 <main>
 </main>
@@ -23,6 +39,41 @@
 </footer>
 
 <script>
+</script>
+</body>
+</html>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function callController() {
+        fetch('http://localhost:8080/cartes/playerclass/Priest', { method: 'GET' })
+            .then(response => response.json())
+            .then(arrayList => {
+                showDataInTable(arrayList);
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des données :", error);
+            });
+    }
+
+    function showDataInTable(arrayList) {
+        const dataDisplayBody = document.getElementById("dataDisplay").getElementsByTagName('tbody')[0];
+        dataDisplayBody.innerHTML = "";
+
+        arrayList.forEach(item => {
+            const row = dataDisplayBody.insertRow();
+            const idCell = row.insertCell();
+            idCell.textContent = item.id;
+
+            const nomCell = row.insertCell();
+            nomCell.textContent = item.nom;
+
+            const descriptionCell = row.insertCell();
+            descriptionCell.textContent = item.description;
+        });
+    }
 </script>
 </body>
 </html>
