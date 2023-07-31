@@ -6,6 +6,7 @@ import com.hsapi.apideck.services.CarteService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -35,6 +36,11 @@ public class HsApiClient {
         allCards.addAll(getCardForClass("Death%20Knight"));
         allCards.addAll(getCardForClass("Druid"));
         allCards.addAll(getCardForClass("Neutral"));
+
+        for (int i = 0; i<allCards.size(); i ++){
+            System.out.println(allCards.get(i));
+        }
+
         return allCards;
     }
 
