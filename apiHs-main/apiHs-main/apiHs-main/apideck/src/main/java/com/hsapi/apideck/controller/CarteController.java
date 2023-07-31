@@ -13,7 +13,7 @@ import com.hsapi.apideck.services.*;
 import java.io.IOException;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 @RestController
 public class CarteController {
@@ -30,7 +30,7 @@ public class CarteController {
 
     // Aggregate root
     // tag::get-aggregate-root[]
-    @GetMapping("/cartes")
+    @GetMapping("/cartes2")
     ArrayList all(@RequestParam(required = false) String toto) throws IOException, InterruptedException {
         if(toto != null) {
             return carteService.fetchCardForClass(toto);
@@ -77,6 +77,12 @@ public class CarteController {
         carteRepository.deleteById(id);
     }
 
+     @GetMapping("/cartes/playerclass/{playerClass}")
 
+    List<Carte> one(@PathVariable String playerClass) throws IOException, InterruptedException {
+
+        return carteService.fetchCardForClassFromRepo(playerClass);
+
+    }
 
 }

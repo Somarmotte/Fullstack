@@ -2,8 +2,8 @@ package com.hsapi.apideck.controller;
 
 import java.util.List;
 
-
-import com.hsapi.apideck.exception.*;
+import com.hsapi.apideck.exception.CarteNotFoundException;
+import com.hsapi.apideck.exception.DeckNotFoundException;
 import com.hsapi.apideck.model.Deck;
 import com.hsapi.apideck.repo.DeckRepository;
 import com.hsapi.apideck.repo.CarteRepository;
@@ -89,9 +89,9 @@ public class DeckController {
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
             }
 
-            catch(DeckFullException | IncompatibleClassException | TooManySameCardException e){
-                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-            }
+          //  catch(DeckFullException | IncompatibleClassException e){
+           //     return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+          //  }
 
 
     }
