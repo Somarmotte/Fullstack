@@ -1,0 +1,56 @@
+/* styles.css */
+
+body {
+
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("FondWeb.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+corps {
+
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("monimage.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.horizontal-list {
+    background-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: flex-start;
+}
+
+.horizontal-list li {
+    display: inline;
+    margin: 0 10px;
+    position: relative;
+}
+
+.horizontal-list li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.horizontal-list li a:hover {
+    color: #007bff;
+}
+
+.nav-bar {
+    background-color: transparent;
+    overflow: hidden;
+    float: left;
+    text-align: right;
+    padding: 0px 610px;
+    text-decoration: none;
+    color: black;
+
+}
+
