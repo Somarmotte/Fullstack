@@ -1,56 +1,127 @@
 /* styles.css */
 
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-
     min-height: 100vh;
     margin: 0;
-    background-image: url("FondWeb.jpg");
+    background-image: url("../images/FondWeb.jpg");
     background-size: cover;
     background-position: center;
+    font-family: Arial, sans-serif;
 }
 
-
-corps {
-
-    min-height: 100vh;
-    margin: 0;
-    background-image: url("monimage.png");
-    background-size: cover;
-    background-position: center;
-}
-
-.horizontal-list {
+/* Header Styles */
+header {
     background-color: transparent;
-    display: inline-flex;
-    align-items: center;
     padding: 10px;
-    justify-content: flex-start;
-}
-
-.horizontal-list li {
-    display: inline;
-    margin: 0 10px;
-    position: relative;
-}
-
-.horizontal-list li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-}
-
-.horizontal-list li a:hover {
-    color: #007bff;
+    text-align: center;
 }
 
 .nav-bar {
-    background-color: transparent;
-    overflow: hidden;
-    float: left;
-    text-align: right;
-    padding: 0px 610px;
-    text-decoration: none;
-    color: black;
-
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+.nav-bar li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.nav-bar li a {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-bar li a:hover {
+    background-color: #0056b3;
+}
+
+/* Main Styles */
+main {
+    padding: 20px;
+}
+
+/* Form Styles */
+#recherche {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#recherche-valeur {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styles */
+#dataDisplay {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+#dataDisplay td {
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#dataDisplay img {
+    max-width: 270px;
+    height: 270px;
+    border-radius: 10px;
+    cursor: grab;
+    transition: transform 0.3s ease;
+}
+
+#dataDisplay img:hover {
+    transform: scale(1.1);
+}
+
+button.ajouter {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.ajouter:hover {
+    background-color: #0056b3;
+}
+
+/* Add styles for dragged elements */
+[data-dragging="true"] {
+    opacity: 0.7;
+    cursor: grabbing;
+}

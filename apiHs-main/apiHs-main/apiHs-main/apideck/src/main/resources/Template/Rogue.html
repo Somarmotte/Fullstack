@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test bouton appel fonction</title>
-</head>
-<body>
-
-<!DOCTYPE html>
-<html>
-<head>
     <meta charset="UTF-8">
     <title>Hearthstone Fan Page</title>
     <link rel="stylesheet" href="styles.css">
@@ -17,19 +10,15 @@
     <nav class="horizontal-list">
         <ul class="nav-bar">
             <li><a href="PageAccueil.html">Accueil</a></li>
-            <li><a href="Cartes.html">Cartes</a></li>
             <li><a href="Decks.html">Decks</a></li>
         </ul>
     </nav>
 </header>
-<button onclick="callController()">Afficher les cartes Rogue</button>
 
 <table id="dataDisplay">
-    <thead>
-    <tr>
-    </tr>
-    </thead>
-    <tbody></tbody>
+    <tbody>
+    <tr id="imageRow"></tr>
+    </tbody>
 </table>
 
 <main>
@@ -38,15 +27,12 @@
 <footer>
 </footer>
 
-<script>
-</script>
-</body>
-</html>
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        callController();
+    });
+
     function callController() {
         fetch('http://localhost:8080/cartes/playerclass/Rogue', { method: 'GET' })
             .then(response => response.json())
@@ -62,18 +48,36 @@
         const dataDisplayBody = document.getElementById("dataDisplay").getElementsByTagName('tbody')[0];
         dataDisplayBody.innerHTML = "";
 
+        let row;
+        let counter = 0;
+
         arrayList.forEach(item => {
-            const row = dataDisplayBody.insertRow();
-            const idCell = row.insertCell();
-            idCell.textContent = item.id;
+            if (counter % 6 === 0) {
+                row = dataDisplayBody.insertRow();
+            }
 
-            const nomCell = row.insertCell();
-            nomCell.textContent = item.nom;
+            const cell = row.insertCell();
 
-            const descriptionCell = row.insertCell();
-            descriptionCell.textContent = item.description;
+            const img = document.createElement("img");
+            img.src = item.img;
+            cell.appendChild(img);
+
+            const addButton = document.createElement("button");
+            addButton.textContent = "Ajouter";
+            cell.appendChild(addButton);
+
+            addButton.dataset.cardId = item.idCarte;
+            counter++;
         });
     }
+
+    document.getElementById("dataDisplay").addEventListener('click', function(event) {
+        if (event.target && event.target.nodeName === "BUTTON") {
+            const cardId = event.target.dataset.cardId;
+            const imgSrc = event.target.previousElementSibling.src;
+            alert("Id de la Carte: " + cardId);
+        }
+    });
 </script>
 </body>
 </html>
