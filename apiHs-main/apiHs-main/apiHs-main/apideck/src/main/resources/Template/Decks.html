@@ -2,66 +2,45 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Hearthstone Fan Page</title>
+  <title>Deck</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
   <nav class="horizontal-list">
     <ul class="nav-bar">
-      <li>
-        <a href="PageAccueil.html">Accueil</a>
-      </li>
-      <li>
-        <a href="Decks.html">Decks</a>
-      </li>
+      <li><a href="PageAccueil.html">Accueil</a></li>
+      <li><a href="Decks.html">Decks</a></li>
     </ul>
   </nav>
 </header>
-<div></div>
-<table id="dataDisplay">
-  <thead>
-  <tr>
-    <th>Player Class</th>
-    <th>Deck Name</th>
-  </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-<main></main>
-<footer></footer>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script type="text/javascript">
+
+<h1>Votre Deck :</h1>
+
+<div id="deckContainer"></div>
+
+<footer>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
   document.addEventListener("DOMContentLoaded", function() {
-    callController();
+    displayDeckImages();
   });
 
-  function callController() {
-    fetch('http://localhost:8080/decksrecup', {
-      method: 'GET'
-    })
-            .then(response => response.json())
-            .then(arrayList => {
-              showDataInTable(arrayList);
-            })
-            .catch(error => {
-              console.error("Erreur lors de la récupération des données :", error);
-            });
-  }
+  function displayDeckImages() {
+    const deckContainer = document.getElementById("deckContainer");
+    deckContainer.innerHTML = "";
 
-  function showDataInTable(arrayList) {
-    const dataDisplayBody = document.getElementById("dataDisplay").getElementsByTagName('tbody')[0];
-    dataDisplayBody.innerHTML = "";
-
-    arrayList.forEach(item => {
-      const row = dataDisplayBody.insertRow();
-
-      const classCell = row.insertCell();
-      classCell.textContent = item.playerClass;
-
-      const nameCell = row.insertCell();
-      nameCell.textContent = item.deckName;
-    });
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const cardId = sessionStorage.key(i);
+      const imgUrl = sessionStorage.getItem(cardId);
+      if (imgUrl) {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        deckContainer.appendChild(img);
+      }
+    }
   }
 </script>
 </body>
