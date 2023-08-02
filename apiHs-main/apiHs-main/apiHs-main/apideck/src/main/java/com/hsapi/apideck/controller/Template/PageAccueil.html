@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hearthstone Fan Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <nav class="horizontal-list">
+        <ul class="nav-bar">
+            <li><a href="PageAccueil.html">Accueil</a></li>
+            <li><a href="Decks.html">Decks</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="recherche">
+    </section>
+
+    <!-- Add the table for images -->
+    <section id="gallery">
+        <table id="dataDisplay">
+            <tr>
+                <td>
+                    <img src="../images/DeathKnight.png" alt="Image 1" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('DeathKnight')" oncontextmenu="openInNewTab('DeathKnight')" draggable="true" ondragstart="onDragStart(event)">Death Knight</button>
+                </td>
+                <td>
+                    <img src="../images/DemonHunter.png" alt="Image 2" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('DemonHunter')" oncontextmenu="openInNewTab('DemonHunter')" draggable="true" ondragstart="onDragStart(event)">Demon Hunter</button>
+                </td>
+                <td>
+                    <img src="../images/Druid.png" alt="Image 3" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Druid')" oncontextmenu="openInNewTab('Druid')" draggable="true" ondragstart="onDragStart(event)">Druid</button>
+                </td>
+                <td>
+                    <img src="../images/Hunter.png" alt="Image 4" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Hunter')" oncontextmenu="openInNewTab('Hunter')" draggable="true" ondragstart="onDragStart(event)">Hunter</button>
+                </td>
+                <td>
+                    <img src="../images/Mage.png" alt="Image 5" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Mage')" oncontextmenu="openInNewTab('Mage')" draggable="true" ondragstart="onDragStart(event)">Mage</button>
+                </td>
+
+                <td>
+                    <img src="../images/Warrior.png" alt="Image 11" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Warrior')" oncontextmenu="openInNewTab('Warrior')" draggable="true" ondragstart="onDragStart(event)">Warrior</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../images/Priest.png" alt="Image 7" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Priest')" oncontextmenu="openInNewTab('Priest')" draggable="true" ondragstart="onDragStart(event)">Priest</button>
+                </td>
+                <td>
+                    <img src="../images/Paladin.png" alt="Image 6" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Paladin')" oncontextmenu="openInNewTab('Paladin')" draggable="true" ondragstart="onDragStart(event)">Paladin</button>
+                </td>
+                <td>
+                    <img src="../images/Rogue.png" alt="Image 8" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Rogue')" oncontextmenu="openInNewTab('Rogue')" draggable="true" ondragstart="onDragStart(event)">Rogue</button>
+                </td>
+                <td>
+                    <img src="../images/Shaman.png" alt="Image 9" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Shaman')" oncontextmenu="openInNewTab('Shaman')" draggable="true" ondragstart="onDragStart(event)">Shaman</button>
+                </td>
+                <td>
+                    <img src="../images/Warlock.png" alt="Image 10" draggable="true" ondragstart="onDragStart(event)">
+                    <button type="button" onclick="redirectToClassPage('Warlock')" oncontextmenu="openInNewTab('Warlock')" draggable="true" ondragstart="onDragStart(event)">Warlock</button>
+                </td>
+            </tr>
+        </table>
+    </section>
+</main>
+<footer>
+</footer>
+
+<script>
+    function redirectToClassPage(className) {
+        if (className !== "") {
+            window.location.href = className + ".html";
+        }
+    }
+
+    function openInNewTab(className) {
+        if (className !== "") {
+            window.open(className + ".html", "_blank");
+        }
+    }
+
+    function onDragStart(event) {
+        const className = event.target.textContent;
+        event.dataTransfer.setData("text/plain", className);
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function onDrop(event) {
+        const className = event.dataTransfer.getData("text");
+        redirectToClassPage(className);
+    }
+</script>
+</body>
+</html>

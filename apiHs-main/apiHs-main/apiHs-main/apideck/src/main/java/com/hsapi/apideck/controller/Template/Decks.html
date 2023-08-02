@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Deck</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <nav class="horizontal-list">
+    <ul class="nav-bar">
+      <li><a href="PageAccueil.html">Accueil</a></li>
+      <li><a href="Decks.html">Decks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<h1>Votre Deck :</h1>
+
+<div id="deckContainer"></div>
+
+<footer>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    displayDeckImages();
+  });
+
+  function displayDeckImages() {
+    const deckContainer = document.getElementById("deckContainer");
+    deckContainer.innerHTML = "";
+
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const cardId = sessionStorage.key(i);
+      const imgUrl = sessionStorage.getItem(cardId);
+      if (imgUrl) {
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        deckContainer.appendChild(img);
+      }
+    }
+  }
+</script>
+</body>
+</html>
