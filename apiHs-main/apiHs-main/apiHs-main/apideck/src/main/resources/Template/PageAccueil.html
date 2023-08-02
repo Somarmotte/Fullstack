@@ -49,7 +49,6 @@
                 </td>
             </tr>
             <tr>
-
                 <td>
                     <img src="../images/Priest.png" alt="Image 7" draggable="true" ondragstart="onDragStart(event)">
                     <button type="button" onclick="redirectToClassPage('Priest')" oncontextmenu="openInNewTab('Priest')" draggable="true" ondragstart="onDragStart(event)">Priest</button>
@@ -58,7 +57,6 @@
                     <img src="../images/Paladin.png" alt="Image 6" draggable="true" ondragstart="onDragStart(event)">
                     <button type="button" onclick="redirectToClassPage('Paladin')" oncontextmenu="openInNewTab('Paladin')" draggable="true" ondragstart="onDragStart(event)">Paladin</button>
                 </td>
-
                 <td>
                     <img src="../images/Rogue.png" alt="Image 8" draggable="true" ondragstart="onDragStart(event)">
                     <button type="button" onclick="redirectToClassPage('Rogue')" oncontextmenu="openInNewTab('Rogue')" draggable="true" ondragstart="onDragStart(event)">Rogue</button>
@@ -71,9 +69,6 @@
                     <img src="../images/Warlock.png" alt="Image 10" draggable="true" ondragstart="onDragStart(event)">
                     <button type="button" onclick="redirectToClassPage('Warlock')" oncontextmenu="openInNewTab('Warlock')" draggable="true" ondragstart="onDragStart(event)">Warlock</button>
                 </td>
-                <tr>
-
-                <td></td>
             </tr>
         </table>
     </section>
@@ -95,7 +90,17 @@
     }
 
     function onDragStart(event) {
-        event.dataTransfer.setData("text/plain", event.target.id);
+        const className = event.target.textContent;
+        event.dataTransfer.setData("text/plain", className);
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function onDrop(event) {
+        const className = event.dataTransfer.getData("text");
+        redirectToClassPage(className);
     }
 </script>
 </body>
